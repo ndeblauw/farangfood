@@ -13,7 +13,10 @@
 <ul>
     @foreach($shop->reviews as $review)
         <li>
-            <p>{{$review->comment}}</p>
+            <p>
+                <strong>{{$review->author->name}}:</strong>
+                {{$review->comment}}
+            </p>
         </li>
     @endforeach
 </ul>

@@ -18,6 +18,7 @@ class ReviewFactory extends Factory
     {
         return [
             'shop_id' => fake()->numberBetween(1, 10),
+            'author_id' => fake()->numberBetween(1, 15),
             'comment' => fake()->paragraph(),
         ];
     }
