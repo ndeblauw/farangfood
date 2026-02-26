@@ -13,5 +13,10 @@ class Shop extends Model
     {
         return $this->hasMany(Review::class, 'shop_id', 'id');
     }
+
+    public function foods()
+    {
+        return $this->belongsToMany(Food::class);
+    }
     //
 }
