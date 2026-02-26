@@ -8,17 +8,15 @@ class ShopController extends Controller
 {
     public function index()
     {
-        $shops = [
-            'Ponny',
-            'KFC',
-            'Starbucks',
-        ];
+        $shops = \App\Models\Shop::orderBy('name')->get();
 
         return view('shops.index', ['shops' => $shops]);
     }
 
-    public function show($shop)
+    public function show($id)
     {
+        $shop = \App\Models\Shop::where('id', $id)->first();
+
         return view('shops.show', ['shop' => $shop]);
     }
 }

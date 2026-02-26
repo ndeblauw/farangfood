@@ -7,7 +7,7 @@
     <h1>List of Shops</h1>
     <ul>
         @foreach($shops as $shop)
-            <li> <a href="{{ route('shops.show', $shop) }}">{{ $shop }}</a></li>
+            <li> <a href="{{ route('shops.show', $shop->id) }}">{{ $shop->name }}</a></li>
         @endforeach
     </ul>
 </body>

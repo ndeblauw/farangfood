@@ -1,11 +1,12 @@
 <html>
 <head>
-    <title>Details of {{$shop}}</title>
+    <title>Details of {{$shop->name}}</title>
 </head>
 <body>
 
-<h1>Details of {{$shop}}</h1>
-<p>Here will come a description</p>
+<h1>Details of {{$shop->name}}</h1>
+<p><em>{{$shop->address}}</em></p>
+<p>{{$shop->description}}</p>
 
 <a href="{{ route('shops.index') }}">Back to list of shops</a>
 </body>
