@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('food_type');
+            $table->enum('price_level', ['cheap', 'moderate', 'expensive', 'unknown'])->default('unknown');
             $table->text('description');
 
             $table->timestamps();
