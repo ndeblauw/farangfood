@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Shop extends Model
 {
     use HasFactory;
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'shop_id', 'id');
+    }
     //
 }

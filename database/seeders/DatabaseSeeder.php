@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Review;
 use App\Models\Shop;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -15,5 +16,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Shop::factory(10)->create();
+        Review::factory(30)->create();
     }
 }
