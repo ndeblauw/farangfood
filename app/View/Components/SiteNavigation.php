@@ -8,12 +8,17 @@ use Illuminate\View\Component;
 
 class SiteNavigation extends Component
 {
+    public array $menu_items = [];
+
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        //
+        $this->menu_items = [
+            ['name' => 'Home', 'url' => route('home')],
+            ['name' => 'Shops', 'url' => route('shops.index')],
+        ];
     }
 
     /**
