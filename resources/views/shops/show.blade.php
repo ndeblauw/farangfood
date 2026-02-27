@@ -1,4 +1,4 @@
-<x-site-layout>
+<x-site-layout title="{{$shop->name}}">
 
     <h1 class="text-2xl font-bold">Details of {{$shop->name}}</h1>
     <p><em>{{$shop->address}}</em></p>

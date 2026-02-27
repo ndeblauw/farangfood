@@ -1,4 +1,4 @@
-<x-site-layout>
+<x-site-layout title="List of shops">
 
     <h1 class="text-2xl font-bold">List of Shops</h1>
     <ul class="list-disc list-inside">
