@@ -11,7 +11,6 @@
                 <li>{{$food->name}}</li>
             @endforeach
         </ul>
-
     </div>
 
     <div class="mt-6 mb-2">
