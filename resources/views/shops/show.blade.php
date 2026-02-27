@@ -8,7 +8,7 @@
         <h2 class="inline text-xl font-bold text-sky-50 bg-sky-700">Foods present</h2>
         <ul class="list-disc list-inside">
             @foreach($shop->foods as $food)
-                <li>{{$food->name}}</li>
+                <li><a href="{{route('food.show', $food->id)}}">{{$food->name}}</a></li>
             @endforeach
         </ul>
     </div>
