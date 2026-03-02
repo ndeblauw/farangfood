@@ -18,7 +18,7 @@ Route::get('food/{food}', [\App\Http\Controllers\FoodController::class, 'show'])
 /*
  * User zone routes
  */
-Route::view('dashboard', 'dashboard')
+Route::get('dashboard', \App\Http\Controllers\DashboardController::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
