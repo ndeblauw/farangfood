@@ -13,14 +13,19 @@
 
     <ul class="list-disc list-inside">
         @foreach($food as $fooditem)
-            <li>
-                {{$fooditem->name}}
-                <a href="/home/food/{{$fooditem->id}}/edit" class="text-sky-700 hover:bg-sky-200">Edit</a>
-                <form action="/home/food/{{$fooditem->id}}" method="post" class="inline">
-                    @method('delete')
-                    @csrf
-                    <button type="submit">Delete</button>
-                </form>
+            <li class="hover:bg-sky-200 w-2/3 flex items-center justify-between">
+                <span>
+                    {{$fooditem->name}}
+                </span>
+                <div>
+                    <a href="/home/food/{{$fooditem->id}}/edit" class="text-sky-700 hover:bg-sky-300">Edit</a>
+                    |
+                    <form action="/home/food/{{$fooditem->id}}" method="post" class="inline">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="text-sky-700 hover:bg-sky-300">Delete</button>
+                    </form>
+                </div>
             </li>
 
         @endforeach
