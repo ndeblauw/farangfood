@@ -7,11 +7,8 @@
         @method('put')
         @csrf
 
-        <div>
-            <label for="name" class="font-semibold text-sm">Food name</label><br/>
-            <input type="text" id="name" name="name" placeholder="Food Name" value="{{old('name',$food->name)}}" class="p-1 border @error('name') border-red-600 @else border-sky-700 @enderror">
-            @error('name')<div class="text-red-600 text-xs">{{$message}}</div>@enderror
-        </div>
+        <x-text-input name="name" placeholder="Food Name" label="Food name" value="{{$food->name}}"/>
+
         <div>
             <button type="submit" class="bg-sky-800 text-sky-50 p-2 uppercase">Update</button>
         </div>
