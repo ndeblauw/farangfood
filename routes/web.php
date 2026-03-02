@@ -22,13 +22,9 @@ Route::get('dashboard', \App\Http\Controllers\DashboardController::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::get('home/food', [\App\Http\Controllers\Home\FoodController::class, 'index'])->name('home.food.index');
-Route::get('home/food/create', [\App\Http\Controllers\Home\FoodController::class, 'create']);
-Route::post('home/food', [\App\Http\Controllers\Home\FoodController::class, 'store']);
-
-Route::get('home/food/{id}/edit', [\App\Http\Controllers\Home\FoodController::class, 'edit'])->name('home.food.edit');
-Route::put('home/food/{id}', [\App\Http\Controllers\Home\FoodController::class, 'update'])->name('home.food.update');
-Route::delete('home/food/{id}', [\App\Http\Controllers\Home\FoodController::class, 'destroy'])->name('home.food.destroy');
+Route::name('home.')->prefix('home')->group( function() {
+    Route::resource('food', \App\Http\Controllers\Home\FoodController::class)->except(['show']);
+});
 
 require __DIR__.'/settings.php';
 
