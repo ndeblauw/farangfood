@@ -16,6 +16,11 @@
             <li>
                 {{$fooditem->name}}
                 <a href="/home/food/{{$fooditem->id}}/edit" class="text-sky-700 hover:bg-sky-200">Edit</a>
+                <form action="/home/food/{{$fooditem->id}}" method="post" class="inline">
+                    @method('delete')
+                    @csrf
+                    <button type="submit">Delete</button>
+                </form>
             </li>
 
         @endforeach

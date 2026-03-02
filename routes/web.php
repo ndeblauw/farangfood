@@ -28,7 +28,7 @@ Route::post('home/food', [\App\Http\Controllers\Home\FoodController::class, 'sto
 
 Route::get('home/food/{id}/edit', [\App\Http\Controllers\Home\FoodController::class, 'edit'])->name('home.food.edit');
 Route::put('home/food/{id}', [\App\Http\Controllers\Home\FoodController::class, 'update'])->name('home.food.update');
-
+Route::delete('home/food/{id}', [\App\Http\Controllers\Home\FoodController::class, 'destroy'])->name('home.food.destroy');
 
 require __DIR__.'/settings.php';
 

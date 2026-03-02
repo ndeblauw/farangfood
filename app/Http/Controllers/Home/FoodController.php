@@ -48,8 +48,13 @@ class FoodController extends Controller
         ]);
 
         return redirect()->route('home.food.index');
-
     }
 
-    //
+    public function destroy($id)
+    {
+        $food = Food::find($id);
+        $food->delete();
+
+        return redirect()->route('home.food.index');
+    }
 }
