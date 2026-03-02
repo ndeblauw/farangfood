@@ -30,5 +30,26 @@ class FoodController extends Controller
 
         return redirect()->route('home.food.index');
     }
+
+    public function edit($id)
+    {
+        $food = Food::find($id);
+
+        return view('home.food.edit', ['food' => $food]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $food = Food::find($id);
+        $data = $request->all();
+
+        $food->update([
+            'name' => $data['name'],
+        ]);
+
+        return redirect()->route('home.food.index');
+
+    }
+
     //
 }

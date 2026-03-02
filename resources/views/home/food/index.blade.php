@@ -13,7 +13,10 @@
 
     <ul class="list-disc list-inside">
         @foreach($food as $fooditem)
-            <li>{{$fooditem->name}}</li>
+            <li>
+                {{$fooditem->name}}
+                <a href="/home/food/{{$fooditem->id}}/edit" class="text-sky-700 hover:bg-sky-200">Edit</a>
+            </li>
 
         @endforeach
     </ul>
