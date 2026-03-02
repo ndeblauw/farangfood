@@ -35,14 +35,14 @@ class FoodController extends Controller
 
     public function edit($id)
     {
-        $food = Food::find($id);
+        $food = Food::findOrFail($id);
 
         return view('home.food.edit', ['food' => $food]);
     }
 
     public function update(Request $request, $id)
     {
-        $food = Food::find($id);
+        $food = Food::findOrFail($id);
         $data = $request->validate([
             'name' => ['required', 'string', 'min:3']
         ]);
@@ -56,7 +56,7 @@ class FoodController extends Controller
 
     public function destroy($id)
     {
-        $food = Food::find($id);
+        $food = Food::findOrFail($id);
         $food->delete();
 
         return redirect()->route('home.food.index');
