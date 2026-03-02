@@ -23,6 +23,9 @@ Route::get('dashboard', \App\Http\Controllers\DashboardController::class)
     ->name('dashboard');
 
 Route::get('home/food', [\App\Http\Controllers\Home\FoodController::class, 'index'])->name('home.food.index');
+Route::get('home/food/create', [\App\Http\Controllers\Home\FoodController::class, 'create']);
+Route::post('home/food', [\App\Http\Controllers\Home\FoodController::class, 'store']);
+
 require __DIR__.'/settings.php';
 
 

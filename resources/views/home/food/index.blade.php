@@ -6,6 +6,7 @@
         </h1>
 
         <div>
+            <a href="/home/food/create" class="bg-sky-900 text-sky-50 p-1">Create Foodtype</a>
         </div>
 
     </div>

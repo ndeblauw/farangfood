@@ -14,3 +14,21 @@ class FoodController extends Controller
 
         return view ('home.food.index', ['food' => $food]);
     }
+
+    public function create()
+    {
+        return view('home.food.create');
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
+
+        Food::create([
+            'name' => $data['name'],
+        ]);
+
+        return redirect()->route('home.food.index');
+    }
+    //
+}
