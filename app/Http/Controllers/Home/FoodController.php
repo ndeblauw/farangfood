@@ -22,7 +22,9 @@ class FoodController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->validate([
+            'name' => ['required', 'string', 'min:3']
+        ]);
 
         Food::create([
             'name' => $data['name'],
@@ -41,7 +43,9 @@ class FoodController extends Controller
     public function update(Request $request, $id)
     {
         $food = Food::find($id);
-        $data = $request->all();
+        $data = $request->validate([
+            'name' => ['required', 'string', 'min:3']
+        ]);
 
         $food->update([
             'name' => $data['name'],
