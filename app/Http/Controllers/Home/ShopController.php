@@ -39,6 +39,7 @@ class ShopController extends Controller
             'food_type' => ['required', 'string', 'max:255'],
             'price_level' => ['required', 'string', 'max:255'],
             'foods' => ['array'],
+            'author_id' => ['required', 'integer'],
         ]);
 
         // 2. Create the shop
@@ -48,6 +49,7 @@ class ShopController extends Controller
             'address' => $data['address'],
             'food_type' => $data['food_type'],
             'price_level' => $data['price_level'],
+            'author_id' => $data['author_id'],
         ]);
 
         $shop->foods()->sync($data['foods'] ?? []);

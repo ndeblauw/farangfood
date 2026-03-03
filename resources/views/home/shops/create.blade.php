@@ -6,6 +6,7 @@
 
         @csrf
 
+        <input type="hidden" name="author_id" value="{{auth()->id()}}"/>
         <x-text-input name="name" placeholder="Full name" label="Shop name"/>
         <x-text-input name="address" placeholder="Street, nr, zip, city" label="Shop Address"/>
 
