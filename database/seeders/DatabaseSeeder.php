@@ -16,6 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        User::create([
+            'name' => 'Nico',
+            'email' => 'nico@deblauwe.be',
+            'password' => '$2y$12$hhE2gjMs0WI./tRhuydv/OvEfROqQf4YNLzT37OPEZWJNI1jLoedm',
+        ]);
+
         User::factory(15)->create();
         Food::factory(5)->create();
 
