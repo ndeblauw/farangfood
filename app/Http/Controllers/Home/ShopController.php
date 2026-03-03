@@ -38,6 +38,7 @@ class ShopController extends Controller
             'address' => ['required', 'string', 'max:255'],
             'food_type' => ['required', 'string', 'max:255'],
             'price_level' => ['required', 'string', 'max:255'],
+            'foods' => ['array'],
         ]);
 
         // 2. Create the shop
@@ -48,6 +49,8 @@ class ShopController extends Controller
             'food_type' => $data['food_type'],
             'price_level' => $data['price_level'],
         ]);
+
+        $shop->foods()->sync($data['foods'] ?? []);
 
         // 3. Redirect to the shop index page
         return redirect()->route('home.shops.index');
@@ -83,6 +86,7 @@ class ShopController extends Controller
             'address' => ['required', 'string', 'max:255'],
             'food_type' => ['required', 'string', 'max:255'],
             'price_level' => ['required', 'string', 'max:255'],
+            'foods' => ['array'],
         ]);
 
         // 3. update the shop information
@@ -93,6 +97,8 @@ class ShopController extends Controller
             'food_type' => $data['food_type'],
             'price_level' => $data['price_level'],
         ]);
+
+        $shop->foods()->sync($data['foods'] ?? []);
 
         // 4. redirect to the shop index page
         return redirect()->route('home.shops.index');

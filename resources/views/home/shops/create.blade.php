@@ -24,6 +24,12 @@
 
         <x-text-area name="description" placeholder="Describe the shop and its food" label="Description"/>
 
+        <x-checkboxes
+            name="foods"
+            label="What can you eat there?"
+            :options="\App\Models\Food::orderBy('name')->pluck('name','id')->toArray()"
+        />
+
         <div>
             <button type="submit" class="bg-sky-800 text-sky-50 p-2 uppercase">Create</button>
         </div>
