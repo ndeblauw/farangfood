@@ -24,6 +24,7 @@ Route::get('dashboard', \App\Http\Controllers\DashboardController::class)
 
 Route::name('home.')->prefix('home')->group( function() {
     Route::resource('food', \App\Http\Controllers\Home\FoodController::class)->except(['show']);
+    Route::resource('shops', \App\Http\Controllers\Home\ShopController::class);
 });
 
 require __DIR__.'/settings.php';

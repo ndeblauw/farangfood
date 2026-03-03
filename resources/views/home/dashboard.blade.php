@@ -7,6 +7,7 @@
 
         <div>
             <a href="/home/food">Manage Foodtype</a>
+            <a href="/home/shops">Manage shops</a>
         </div>
 
     </div>
