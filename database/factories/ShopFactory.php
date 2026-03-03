@@ -22,6 +22,7 @@ class ShopFactory extends Factory
             'food_type' => $this->faker->randomElement(['Fast Food', 'Cafe', 'Restaurant']),
             'price_level' => $this->faker->randomElement(['cheap', 'moderate', 'expensive', 'unknown']),
             'description' => $this->faker->paragraph(),
+            'author_id' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

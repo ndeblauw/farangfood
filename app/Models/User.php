@@ -55,6 +55,11 @@ class User extends Authenticatable
         return $this->hasMany(Review::class, 'author_id', 'id');
     }
 
+    public function shops()
+    {
+        return $this->hasMany(Shop::class, 'author_id', 'id');
+    }
+
     /**
      * Get the user's initials
      */
