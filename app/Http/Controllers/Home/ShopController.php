@@ -13,7 +13,12 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $shops = Shop::where('author_id',auth()->id())->get();
+        // If admin user, show all shops, else show only shops created by the user
+        if (auth()->user()->is_admin) {
+            $shops = Shop::all();
+        } else {
+            $shops = Shop::where('author_id', auth()->id())->get();
+        }
 
         return view('home.shops.index', compact('shops'));
     }
@@ -70,8 +75,8 @@ class ShopController extends Controller
     {
         $shop = Shop::findOrFail($id);
 
-        // Ensure the user is the author of the shop
-        if ($shop->author_id !== auth()->id()) {
+        // Ensure the user is allowed to make changes to the shop
+        if (!$shop->canManage(auth()->user())) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -86,8 +91,8 @@ class ShopController extends Controller
         // 1. get the shop (if it exists)
         $shop = Shop::findOrFail($id);
 
-        // Ensure the user is the author of the shop
-        if ($shop->author_id !== auth()->id()) {
+        // Ensure the user is allowed to make changes to the shop
+        if (!$shop->canManage(auth()->user())) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -124,11 +129,10 @@ class ShopController extends Controller
         // 1. get the shop (if it exists)
         $shop = Shop::findOrFail($id);
 
-        // Ensure the user is the author of the shop
-        if ($shop->author_id !== auth()->id()) {
+        // Ensure the user is allowed to make changes to the shop
+        if (!$shop->canManage(auth()->user())) {
             abort(403, 'Unauthorized action.');
         }
-
 
         // 2. delete the shop
         $shop->delete();

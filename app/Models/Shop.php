@@ -25,5 +25,19 @@ class Shop extends Model
     {
         return $this->belongsToMany(Food::class);
     }
-    //
+
+    public function canManage(User $user): bool
+    {
+        // Admin users can always edit
+        if ($user->is_admin) {
+            return true;
+        }
+
+        // Authors can edit their own shops
+        if ($this->author_id === $user->id) {
+            return true;
+        }
+
+        return false;
+    }
 }
