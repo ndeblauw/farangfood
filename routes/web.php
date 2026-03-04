@@ -18,13 +18,16 @@ Route::get('food/{food}', [\App\Http\Controllers\FoodController::class, 'show'])
 /*
  * User zone routes
  */
-Route::get('dashboard', \App\Http\Controllers\DashboardController::class)
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::middleware(['auth'])->group(function() {
 
-Route::name('home.')->prefix('home')->group( function() {
-    Route::resource('food', \App\Http\Controllers\Home\FoodController::class)->except(['show']);
-    Route::resource('shops', \App\Http\Controllers\Home\ShopController::class);
+    Route::get('dashboard', \App\Http\Controllers\DashboardController::class)
+        ->name('dashboard');
+
+    Route::name('home.')->prefix('home')->group( function() {
+        Route::resource('food', \App\Http\Controllers\Home\FoodController::class)->except(['show']);
+        Route::resource('shops', \App\Http\Controllers\Home\ShopController::class);
+    });
+
 });
 
 require __DIR__.'/settings.php';
