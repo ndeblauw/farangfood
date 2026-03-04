@@ -13,7 +13,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $shops = Shop::all();
+        $shops = Shop::where('author_id',auth()->id())->get();
 
         return view('home.shops.index', compact('shops'));
     }
@@ -70,6 +70,11 @@ class ShopController extends Controller
     {
         $shop = Shop::findOrFail($id);
 
+        // Ensure the user is the author of the shop
+        if ($shop->author_id !== auth()->id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
         return view('home.shops.edit', compact('shop'));
     }
 
@@ -80,6 +85,11 @@ class ShopController extends Controller
     {
         // 1. get the shop (if it exists)
         $shop = Shop::findOrFail($id);
+
+        // Ensure the user is the author of the shop
+        if ($shop->author_id !== auth()->id()) {
+            abort(403, 'Unauthorized action.');
+        }
 
         // 2. validate the request
         $data = $request->validate([
@@ -113,6 +123,12 @@ class ShopController extends Controller
     {
         // 1. get the shop (if it exists)
         $shop = Shop::findOrFail($id);
+
+        // Ensure the user is the author of the shop
+        if ($shop->author_id !== auth()->id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
 
         // 2. delete the shop
         $shop->delete();

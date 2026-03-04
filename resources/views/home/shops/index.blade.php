@@ -16,6 +16,7 @@
             <li class="hover:bg-sky-200 w-2/3 flex items-center justify-between">
                 <span>
                     {{$shop->name}}
+                    <span class="text-gray-500 text-sm">({{$shop->author->name}})</span>
                 </span>
                 <div>
                     <a href="/home/shops/{{$shop->id}}/edit" class="text-sky-700 hover:bg-sky-300">Edit</a>
