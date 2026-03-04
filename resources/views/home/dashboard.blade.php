@@ -6,7 +6,9 @@
         </div>
 
         <div>
+            @if( auth()->user()->is_admin)
             <a href="/home/food">Manage Foodtype</a>
+            @endif
             <a href="/home/shops">Manage shops</a>
         </div>
 

@@ -24,7 +24,8 @@ Route::middleware(['auth'])->group(function() {
         ->name('dashboard');
 
     Route::name('home.')->prefix('home')->group( function() {
-        Route::resource('food', \App\Http\Controllers\Home\FoodController::class)->except(['show']);
+        Route::resource('food', \App\Http\Controllers\Home\FoodController::class)->middleware([\App\Http\Middleware\IsAdminMiddleware::class])->except(['show']);
+
         Route::resource('shops', \App\Http\Controllers\Home\ShopController::class);
     });
 
