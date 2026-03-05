@@ -13,7 +13,7 @@ class SiteLayout extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(?string $title)
+    public function __construct(?string $title = null)
     {
         if ($title) {
             $this->title = $title.' | Food For Farang';
