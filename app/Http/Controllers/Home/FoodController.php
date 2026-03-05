@@ -44,12 +44,14 @@ class FoodController extends Controller
     {
         $food = Food::findOrFail($id);
         $data = $request->validate([
-            'name' => ['required', 'string', 'min:3']
+            'name' => ['required', 'string', 'min:3'],
+            'image' => ['nullable'],
         ]);
 
         $food->update([
             'name' => $data['name'],
         ]);
+        $food->addMediaFromRequest('image')->toMediaCollection();
 
         return redirect()->route('home.food.index');
     }
