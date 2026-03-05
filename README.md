@@ -36,3 +36,21 @@ The seeders will create an **admin user** with the following credentials:
 
 The seeders will also create 15 **normal users** with `password` as their password. 
 Look in the database for the email addresses to use.
+
+## Data structure
+The application has the following data structure:
+- **User**: Represents a user of the application. Users can be either normal users or admins. This is the `is_admin` property
+- **Shop**: Represents a shop.
+- **Food**: Represents the main types of food (e.g., Thai, Italian, etc.).
+- **Review**: Represents a review of a shop by a user. 
+
+The models have the following relationships:
+- A **User** 
+  - can have many **Reviews**. (one-to-many relationship).
+  - can have many **Shops** (one-to-many relationship).
+- A **Shop** 
+  - can have many **Reviews**. (one-to-many relationship).
+  - belongs to one **User** (many-to-one relationship).
+  - can be associated with many **Foods** (many-to-many relationship).
+
+Etc... 
