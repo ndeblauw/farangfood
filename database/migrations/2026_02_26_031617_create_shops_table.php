@@ -19,7 +19,10 @@ return new class extends Migration
             $table->string('food_type');
             $table->enum('price_level', ['cheap', 'moderate', 'expensive', 'unknown'])->default('unknown');
             $table->text('description');
-            $table->foreignId('author_id');
+            $table->foreignId('author_id')
+                ->constrained(table: 'users')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
 
             $table->timestamps();
         });
