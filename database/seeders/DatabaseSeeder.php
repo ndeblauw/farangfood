@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Nico',
             'email' => 'nico@deblauwe.be',
             'is_admin' => true,
-            'password' => '$2y$12$hhE2gjMs0WI./tRhuydv/OvEfROqQf4YNLzT37OPEZWJNI1jLoedm',
+            'password' => '$2y$12$6D55UKf89tbQ4Gpevue1Reh52/QM2YNyNTMd22DGeXspqEsW.2Aia',
         ]);
 
         User::factory(15)->create();
