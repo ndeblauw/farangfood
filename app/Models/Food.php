@@ -10,9 +10,7 @@ class Food extends Model
     /** @use HasFactory<\Database\Factories\FoodFactory> */
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-    ];
+    protected $guarded = [];
 
     public function shops()
     {

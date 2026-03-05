@@ -10,6 +10,8 @@ class Review extends Model
     /** @use HasFactory<\Database\Factories\ReviewFactory> */
     use HasFactory;
 
+    protected $guarded = [];
+
     public function shop()
     {
         return $this->belongsTo(Shop::class, 'shop_id', 'id');
