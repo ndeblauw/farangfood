@@ -8,13 +8,7 @@
 
 
                 <a href="{{ route('food.show', $food->id) }}" class="group rounded-xl border border-slate-200 bg-slate-50/70 p-4 transition hover:border-sky-300 hover:bg-sky-50">
-
-                    @if($food->media->isEmpty())
-                        <img src="/img/defaults/food.png">
-                    @else
-                        <img src="{{$food->media->first()?->getUrl()}}">
-                    @endif
-
+                    <img class="w-36" src="{{$food->coverImageUrl('preview')}}">
                     <p class="text-base font-semibold text-slate-900 transition group-hover:text-sky-900">{{ $food->name }}</p>
                     <p class="mt-1 text-sm text-slate-600">View shops that offer this dish.</p>
                 </a>

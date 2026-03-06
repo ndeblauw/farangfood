@@ -51,6 +51,7 @@ class FoodController extends Controller
         $food->update([
             'name' => $data['name'],
         ]);
+        $food->media()->delete();
         $food->addMediaFromRequest('image')->toMediaCollection();
 
         return redirect()->route('home.food.index');
