@@ -51,8 +51,8 @@ class Food extends Model implements HasMedia
         $this
             ->addMediaConversion('banner')
             ->width(1600)
-            ->height(420)
-            ->fit(Fit::Crop, 1600, 420)
+            ->height(320)
+            ->fit(Fit::Crop, 1600, 320)
             ->nonQueued();
     }
 }

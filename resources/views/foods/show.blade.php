@@ -1,16 +1,20 @@
 <x-site-layout>
     <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
-        <div class="flex flex-wrap items-center justify-between gap-3">
-            <h1 class="text-3xl font-semibold tracking-tight text-slate-900">{{ $food->name }}</h1>
-            <a href="{{ route('food.index') }}" class="rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">Back to food list</a>
-        </div>
-
-        <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+        <div class="relative overflow-hidden rounded-2xl border border-slate-200">
             <img
-                class="h-40 w-full object-cover sm:h-48 lg:h-56"
+                class="h-52 w-full object-cover sm:h-64 lg:h-72"
                 src="{{ $food->bannerImageUrl() }}"
                 alt="{{ $food->name }} banner image"
             >
+
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/75 via-slate-900/15 to-transparent"></div>
+
+            <a href="{{ route('food.index') }}" class="absolute right-4 top-4 rounded-md border border-sky-100/70 bg-slate-900/35 px-3 py-1.5 text-sm font-medium text-sky-100 backdrop-blur-sm transition hover:bg-slate-900/50">Back to food list</a>
+
+            <div class="absolute bottom-4 left-4">
+                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-sky-100/90">Food type</p>
+                <h1 class="mt-1 text-3xl font-semibold tracking-tight text-sky-100 sm:text-4xl">{{ $food->name }}</h1>
+            </div>
         </div>
 
         <div class="mt-6">

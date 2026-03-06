@@ -3,19 +3,20 @@
         <h1 class="text-3xl font-semibold tracking-tight text-slate-900">Food collection</h1>
         <p class="mt-2 text-sm text-slate-600">Explore dishes that are currently listed across our featured shops.</p>
 
-        <div class="mt-6 space-y-4">
+        <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             @forelse ($foods as $food)
 
-                <a href="{{ route('food.show', $food->id) }}" class="group flex flex-col gap-4 rounded-2xl border border-slate-200 bg-slate-50/70 p-4 transition hover:border-sky-300 hover:bg-sky-50 sm:flex-row sm:items-center">
-                    <img class="h-40 w-full rounded-xl object-cover sm:h-32 sm:w-52" src="{{ $food->coverImageUrl() }}" alt="{{ $food->name }} cover image">
+                <a href="{{ route('food.show', $food->id) }}" class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 transition hover:border-sky-300">
+                    <img class="h-52 w-full object-cover" src="{{ $food->coverImageUrl() }}" alt="{{ $food->name }} cover image">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/15 to-transparent"></div>
 
-                    <div class="min-w-0">
-                        <p class="text-lg font-semibold text-slate-900 transition group-hover:text-sky-900">{{ $food->name }}</p>
-                        <p class="mt-1 text-sm text-slate-600">View shops that offer this dish.</p>
+                    <div class="absolute bottom-4 left-4 right-4">
+                        <p class="text-lg font-semibold text-sky-100 transition group-hover:text-white">{{ $food->name }}</p>
+                        <p class="mt-1 text-sm text-sky-100/90">View shops that offer this dish.</p>
                     </div>
                 </a>
             @empty
-                <p class="text-sm text-slate-500">No food entries yet. Please check back soon.</p>
+                <p class="sm:col-span-2 lg:col-span-3 text-sm text-slate-500">No food entries yet. Please check back soon.</p>
             @endforelse
         </div>
     </section>
