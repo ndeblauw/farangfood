@@ -5,6 +5,14 @@
             <a href="{{ route('food.index') }}" class="rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">Back to food list</a>
         </div>
 
+        <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+            <img
+                class="h-40 w-full object-cover sm:h-48 lg:h-56"
+                src="{{ $food->bannerImageUrl() }}"
+                alt="{{ $food->name }} banner image"
+            >
+        </div>
+
         <div class="mt-6">
             <h2 class="text-base font-semibold text-slate-900">Available at these shops</h2>
 

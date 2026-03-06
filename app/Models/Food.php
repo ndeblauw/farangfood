@@ -9,11 +9,11 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-
 class Food extends Model implements HasMedia
 {
     /** @use HasFactory<\Database\Factories\FoodFactory> */
     use HasFactory;
+
     use InteractsWithMedia;
 
     protected $guarded = [];
@@ -23,7 +23,7 @@ class Food extends Model implements HasMedia
         return $this->belongsToMany(Shop::class);
     }
 
-    public function coverImageUrl($conversion = 'preview'): string
+    public function coverImageUrl(string $conversion = 'cover-image'): string
     {
         $media = $this->media->first();
 
@@ -34,20 +34,25 @@ class Food extends Model implements HasMedia
         return asset('img/defaults/food.jpg');
     }
 
+    public function bannerImageUrl(): string
+    {
+        return $this->coverImageUrl('banner');
+    }
+
     public function registerMediaConversions(?Media $media = null): void
     {
         $this
-            ->addMediaConversion('preview')
-            ->width(400)
-            ->height(300)
-            ->fit(Fit::Crop, 400, 300)
+            ->addMediaConversion('cover-image')
+            ->width(480)
+            ->height(320)
+            ->fit(Fit::Crop, 480, 320)
             ->nonQueued();
 
         $this
-            ->addMediaConversion('large')
-            ->width(400)
-            ->height(300)
-            ->fit(Fit::Max, 100, 500)
+            ->addMediaConversion('banner')
+            ->width(1600)
+            ->height(420)
+            ->fit(Fit::Crop, 1600, 420)
             ->nonQueued();
     }
 }

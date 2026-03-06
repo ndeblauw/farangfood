@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Food;
 
 class FoodController extends Controller
 {
@@ -13,7 +13,6 @@ class FoodController extends Controller
 
         return view('foods.index', ['foods' => $foods]);
     }
-    //
 
     public function show(int $id)
     {
