@@ -23,6 +23,7 @@ class ShopFactory extends Factory
             'price_level' => $this->faker->randomElement(['cheap', 'moderate', 'expensive', 'unknown']),
             'description' => $this->faker->paragraph(),
             'author_id' => $this->faker->numberBetween(1, 10),
+            'is_published' => $this->faker->boolean(80),
         ];
     }
 }

@@ -11,6 +11,13 @@ class Shop extends Model
 
     protected $guarded = [];
 
+    protected function casts(): array
+    {
+        return [
+            'is_published' => 'boolean',
+        ];
+    }
+
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id', 'id');

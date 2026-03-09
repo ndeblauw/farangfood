@@ -27,6 +27,8 @@ Route::middleware(['auth'])->group(function() {
         Route::resource('food', \App\Http\Controllers\Home\FoodController::class)->middleware([\App\Http\Middleware\IsAdminMiddleware::class])->except(['show']);
 
         Route::resource('shops', \App\Http\Controllers\Home\ShopController::class);
+        Route::get('shops/{shop}/publish', [\App\Http\Controllers\Home\ShopPublishController::class, 'publish'])->name('shops.publish');
+        Route::get('shops/{shop}/unpublish', [\App\Http\Controllers\Home\ShopPublishController::class, 'unpublish'])->name('shops.unpublish');
     });
 
 });

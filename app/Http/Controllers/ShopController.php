@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class ShopController extends Controller
 {
     public function index()
     {
-        $shops = \App\Models\Shop::orderBy('name')->get();
+        $shops = \App\Models\Shop::where('is_published', true)->orderBy('name')->get();
 
         return view('shops.index', ['shops' => $shops]);
     }
@@ -16,6 +14,10 @@ class ShopController extends Controller
     public function show($id)
     {
         $shop = \App\Models\Shop::where('id', $id)->first();
+
+        if ($shop->is_published === false) {
+            abort(404);
+        }
 
         return view('shops.show', ['shop' => $shop]);
     }
