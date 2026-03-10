@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -13,8 +14,8 @@ class Food extends Model implements HasMedia
 {
     /** @use HasFactory<\Database\Factories\FoodFactory> */
     use HasFactory;
-
     use InteractsWithMedia;
+    use SoftDeletes;
 
     protected $guarded = [];
 
