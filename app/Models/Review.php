@@ -23,4 +23,9 @@ class Review extends Model
     {
         return $this->belongsTo(User::class, 'author_id', 'id');
     }
+
+    public function reactions()
+    {
+        return $this->hasMany(ReviewReaction::class, 'review_id', 'id');
+    }
 }
