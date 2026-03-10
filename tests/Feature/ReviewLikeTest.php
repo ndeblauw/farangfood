@@ -49,7 +49,7 @@ it('allows an authenticated user to unlike a review', function () {
         'author_id' => $author->id,
     ]);
 
-    ReviewLike::create([
+    ReviewLike::factory()->create([
         'user_id' => $user->id,
         'review_id' => $review->id,
     ]);
@@ -81,8 +81,8 @@ it('shows review like counts on the shop page', function () {
         'comment' => 'Very good noodles.',
     ]);
 
-    ReviewLike::create(['user_id' => $likerA->id, 'review_id' => $review->id]);
-    ReviewLike::create(['user_id' => $likerB->id, 'review_id' => $review->id]);
+    ReviewLike::factory()->create(['user_id' => $likerA->id, 'review_id' => $review->id]);
+    ReviewLike::factory()->create(['user_id' => $likerB->id, 'review_id' => $review->id]);
 
     $this->get(route('shops.show', $shop->id))
         ->assertSuccessful()

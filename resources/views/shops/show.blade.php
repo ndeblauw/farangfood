@@ -30,10 +30,10 @@
                         <p class="text-sm font-semibold text-slate-900">{{ $review->author->name }}</p>
                         <p class="mt-1 text-sm text-slate-700">{{ $review->comment }}</p>
                         <div class="mt-2 flex items-center justify-between gap-3">
-                            <p class="text-xs font-medium text-slate-500">Likes: {{ $review->likes_count }} · Dislikes: 0</p>
+                            <p class="text-xs font-medium text-slate-500">Likes: {{ $review->likes_count }}</p>
 
                             @auth
-                                @if ($review->isLikedBy(auth()->user()))
+                                @if ($review->liked_by_current_user ?? $review->isLikedBy(auth()->user()))
                                     <form method="POST" action="{{ route('reviews.likes.destroy', $review->id) }}">
                                         @csrf
                                         @method('DELETE')
