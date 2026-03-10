@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -58,7 +59,7 @@ class User extends Authenticatable
         return $this->hasMany(Review::class, 'author_id', 'id');
     }
 
-    public function reviewVotes()
+    public function reviewVotes(): HasMany
     {
         return $this->hasMany(ReviewVote::class, 'user_id', 'id');
     }

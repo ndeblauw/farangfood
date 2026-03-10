@@ -18,7 +18,7 @@ return new class extends Migration
                 ->constrained(table: 'users')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->tinyInteger('vote_type');
+            $table->tinyInteger('vote_type')->comment('1 = like, -1 = dislike');
             $table->timestamps();
 
             $table->unique(['review_id', 'user_id']);

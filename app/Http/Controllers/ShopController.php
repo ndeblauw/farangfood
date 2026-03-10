@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\ReviewVote;
+use Illuminate\View\View;
 
 class ShopController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         $shops = \App\Models\Shop::where('is_published', true)->orderBy('name')->get();
 
         return view('shops.index', ['shops' => $shops]);
     }
 
-    public function show($id)
+    public function show(int $id): View
     {
         $shop = \App\Models\Shop::where('id', $id)->with('foods')->first();
 
@@ -36,7 +37,7 @@ class ShopController extends Controller
 
         $userVotes = [];
 
-        if (auth()->check()) {
+        if (auth()->check() && $reviews->isNotEmpty()) {
             $userVotes = ReviewVote::where('user_id', auth()->id())
                 ->whereIn('review_id', $reviews->pluck('id'))
                 ->pluck('vote_type', 'review_id')
