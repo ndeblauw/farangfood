@@ -29,6 +29,39 @@
                     <article class="rounded-xl border border-slate-200 bg-slate-50/70 p-4">
                         <p class="text-sm font-semibold text-slate-900">{{ $review->author->name }}</p>
                         <p class="mt-1 text-sm text-slate-700">{{ $review->comment }}</p>
+                        <div class="mt-3 flex flex-wrap items-center gap-2 text-sm text-slate-600">
+                            @auth
+                                @php
+                                    $userVote = $userVotes[$review->id] ?? null;
+                                @endphp
+                                <form method="POST" action="{{ route('reviews.vote.store', $review->id) }}">
+                                    @csrf
+                                    <input type="hidden" name="vote_type" value="1">
+                                    <button type="submit" class="rounded-md border px-2 py-1 transition {{ $userVote === 1 ? 'border-emerald-300 bg-emerald-100 text-emerald-700' : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-100' }}">
+                                        👍 Like
+                                    </button>
+                                </form>
+                                <form method="POST" action="{{ route('reviews.vote.store', $review->id) }}">
+                                    @csrf
+                                    <input type="hidden" name="vote_type" value="-1">
+                                    <button type="submit" class="rounded-md border px-2 py-1 transition {{ $userVote === -1 ? 'border-rose-300 bg-rose-100 text-rose-700' : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-100' }}">
+                                        👎 Dislike
+                                    </button>
+                                </form>
+                                @if (! is_null($userVote))
+                                    <form method="POST" action="{{ route('reviews.vote.destroy', $review->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="rounded-md border border-slate-300 bg-white px-2 py-1 text-slate-700 transition hover:bg-slate-100">
+                                            Remove vote
+                                        </button>
+                                    </form>
+                                @endif
+                            @endauth
+                            <span>👍 {{ $review->likes_count }}</span>
+                            <span>👎 {{ $review->dislikes_count }}</span>
+                            <span class="font-semibold text-slate-700">Score: {{ $review->score ?? 0 }}</span>
+                        </div>
                     </article>
                 @empty
                     <p class="text-sm text-slate-500">No reviews yet.</p>
