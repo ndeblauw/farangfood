@@ -13,7 +13,14 @@ class ShopController extends Controller
 
     public function show($id)
     {
-        $shop = \App\Models\Shop::where('id', $id)->first();
+        $shop = \App\Models\Shop::with([
+            'foods',
+            'reviews' => function ($query) {
+                $query->with(['author', 'likes'])
+                    ->withCount('likes')
+                    ->latest();
+            },
+        ])->where('id', $id)->firstOrFail();
 
         if ($shop->is_published === false) {
             abort(404);

@@ -29,6 +29,28 @@
                     <article class="rounded-xl border border-slate-200 bg-slate-50/70 p-4">
                         <p class="text-sm font-semibold text-slate-900">{{ $review->author->name }}</p>
                         <p class="mt-1 text-sm text-slate-700">{{ $review->comment }}</p>
+                        <div class="mt-2 flex items-center justify-between gap-3">
+                            <p class="text-xs font-medium text-slate-500">Likes: {{ $review->likes_count }} · Dislikes: 0</p>
+
+                            @auth
+                                @if ($review->isLikedBy(auth()->user()))
+                                    <form method="POST" action="{{ route('reviews.likes.destroy', $review->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="rounded-md border border-slate-300 px-3 py-1 text-xs font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-100">
+                                            Unlike
+                                        </button>
+                                    </form>
+                                @else
+                                    <form method="POST" action="{{ route('reviews.likes.store', $review->id) }}">
+                                        @csrf
+                                        <button type="submit" class="rounded-md border border-sky-300 bg-sky-50 px-3 py-1 text-xs font-medium text-sky-700 transition hover:border-sky-400 hover:bg-sky-100">
+                                            Like
+                                        </button>
+                                    </form>
+                                @endif
+                            @endauth
+                        </div>
                     </article>
                 @empty
                     <p class="text-sm text-slate-500">No reviews yet.</p>

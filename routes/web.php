@@ -31,6 +31,11 @@ Route::middleware(['auth'])->group(function() {
         Route::get('shops/{shop}/unpublish', [\App\Http\Controllers\Home\ShopPublishController::class, 'unpublish'])->name('shops.unpublish');
     });
 
+    Route::post('reviews/{review}/likes', [\App\Http\Controllers\ReviewLikeController::class, 'store'])
+        ->name('reviews.likes.store');
+    Route::delete('reviews/{review}/likes', [\App\Http\Controllers\ReviewLikeController::class, 'destroy'])
+        ->name('reviews.likes.destroy');
+
 });
 
 require __DIR__.'/settings.php';
