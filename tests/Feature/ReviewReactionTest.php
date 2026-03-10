@@ -8,12 +8,11 @@ use App\Models\User;
 function createReviewForReactions(): Review
 {
     $author = User::factory()->create();
-    $shop = Shop::factory()->create(['author_id' => $author->id]);
 
-    return Review::factory()->create([
-        'shop_id' => $shop->id,
-        'author_id' => $author->id,
-    ]);
+    return Review::factory()
+        ->for($author, 'author')
+        ->for(Shop::factory()->state(['author_id' => $author->id]), 'shop')
+        ->create();
 }
 
 it('requires authentication to react to a review', function () {
@@ -71,7 +70,7 @@ it('allows a user to remove their reaction', function () {
     $user = User::factory()->create();
     $review = createReviewForReactions();
 
-    ReviewReaction::create([
+    ReviewReaction::factory()->create([
         'user_id' => $user->id,
         'review_id' => $review->id,
         'reaction_type' => 'like',

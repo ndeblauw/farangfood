@@ -4,20 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use App\Models\ReviewReaction;
+use Illuminate\Http\RedirectResponse;
 
 class ReviewReactionController extends Controller
 {
-    public function like(Review $review)
+    public function like(Review $review): RedirectResponse
     {
         return $this->setReaction($review, 'like');
     }
 
-    public function dislike(Review $review)
+    public function dislike(Review $review): RedirectResponse
     {
         return $this->setReaction($review, 'dislike');
     }
 
-    public function remove(Review $review)
+    public function remove(Review $review): RedirectResponse
     {
         ReviewReaction::where('review_id', $review->id)
             ->where('user_id', auth()->id())
@@ -26,7 +27,7 @@ class ReviewReactionController extends Controller
         return redirect()->back();
     }
 
-    private function setReaction(Review $review, string $reactionType)
+    private function setReaction(Review $review, string $reactionType): RedirectResponse
     {
         ReviewReaction::updateOrCreate(
             [
