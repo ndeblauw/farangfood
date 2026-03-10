@@ -19,6 +19,8 @@ Route::get('food/{food}', [\App\Http\Controllers\FoodController::class, 'show'])
  * User zone routes
  */
 Route::middleware(['auth'])->group(function() {
+    Route::post('reviews/{review}/vote', [\App\Http\Controllers\ReviewVoteController::class, 'store'])->name('reviews.vote.store');
+    Route::delete('reviews/{review}/vote', [\App\Http\Controllers\ReviewVoteController::class, 'destroy'])->name('reviews.vote.destroy');
 
     Route::get('dashboard', \App\Http\Controllers\DashboardController::class)
         ->name('dashboard');
