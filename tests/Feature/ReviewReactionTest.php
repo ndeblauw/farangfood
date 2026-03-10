@@ -70,11 +70,12 @@ it('allows a user to remove their reaction', function () {
     $user = User::factory()->create();
     $review = createReviewForReactions();
 
-    ReviewReaction::factory()->create([
-        'user_id' => $user->id,
-        'review_id' => $review->id,
-        'reaction_type' => 'like',
-    ]);
+    ReviewReaction::factory()
+        ->for($user)
+        ->for($review)
+        ->create([
+            'reaction_type' => 'like',
+        ]);
 
     $this->actingAs($user)
         ->delete(route('reviews.reaction.remove', $review))
