@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -53,14 +54,19 @@ class User extends Authenticatable
         ];
     }
 
-    public function reviews()
+    public function reviews(): HasMany
     {
         return $this->hasMany(Review::class, 'author_id', 'id');
     }
 
-    public function shops()
+    public function shops(): HasMany
     {
         return $this->hasMany(Shop::class, 'author_id', 'id');
+    }
+
+    public function reviewReactions(): HasMany
+    {
+        return $this->hasMany(ReviewReaction::class, 'user_id', 'id');
     }
 
     /**
