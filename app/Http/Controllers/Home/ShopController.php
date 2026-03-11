@@ -59,6 +59,8 @@ class ShopController extends Controller
 
         $shop->foods()->sync($data['foods'] ?? []);
 
+        cache()->forget('shops_index'); // Clear the cache for the shops index page
+
         // 3. Redirect to the shop index page
         return redirect()->route('home.shops.index');
     }
@@ -116,6 +118,8 @@ class ShopController extends Controller
         ]);
 
         $shop->foods()->sync($data['foods'] ?? []);
+
+        cache()->forget('shops_index'); // Clear the cache for the shops index page
 
         // 4. redirect to the shop index page
         return redirect()->route('home.shops.index');

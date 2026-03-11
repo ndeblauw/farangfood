@@ -27,6 +27,7 @@ class ShopPublishController extends Controller
         }
 
         $shop->update(['is_published' => $isPublished]);
+        cache()->forget('shops_index'); // Clear the cache for the shops index page
 
         return redirect()->back();
     }

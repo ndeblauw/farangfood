@@ -6,7 +6,16 @@ class ShopController extends Controller
 {
     public function index()
     {
-        $shops = \App\Models\Shop::where('is_published', true)->orderBy('name')->get();
+        $shops = cache()->remember('shops_index', 60, function () {
+            sleep(4); // simulate a long query
+
+            return \App\Models\Shop::query()
+                ->select('id', 'name')
+                ->orderBy('name')
+                ->with('foods', 'reviews') // avoid N+1 problem
+                ->where('is_published', true)
+                ->get();
+        });
 
         return view('shops.index', ['shops' => $shops]);
     }
