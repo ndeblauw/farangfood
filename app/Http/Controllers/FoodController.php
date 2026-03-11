@@ -10,6 +10,7 @@ class FoodController extends Controller
     {
         // Load the foods
         $foods = \App\Models\Food::all();
+        $foods->load('media');
 
         return view('foods.index', ['foods' => $foods]);
     }

@@ -13,7 +13,8 @@ class ShopController extends Controller
 
     public function show($id)
     {
-        $shop = \App\Models\Shop::where('id', $id)->first();
+        $shop = \App\Models\Shop::where('id', $id)->first(); // 1 query
+        $shop->load('foods', 'reviews', 'reviews.author:id,name'); // 3 more to catch the N+1 problem
 
         if ($shop->is_published === false) {
             abort(404);

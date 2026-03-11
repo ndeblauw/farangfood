@@ -7,6 +7,12 @@
             @forelse ($shops as $shop)
                 <a href="{{ route('shops.show', $shop->id) }}" class="group rounded-xl border border-slate-200 bg-slate-50/70 p-4 transition hover:border-sky-300 hover:bg-sky-50">
                     <p class="text-base font-semibold text-slate-900 transition group-hover:text-sky-900">{{ $shop->name }}</p>
+                    <p>
+                        {{$shop->reviews->count()}} reviews for this shop
+                        |
+                        {{$shop->foods->count()}} foods in this shop
+                    </p>
+
                     <p class="mt-1 text-sm text-slate-600">Open details, foods, and reviews.</p>
                 </a>
             @empty
