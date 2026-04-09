@@ -14,6 +14,12 @@ Route::get('shops/{shop}', [\App\Http\Controllers\ShopController::class, 'show']
 Route::get('food', [\App\Http\Controllers\FoodController::class, 'index'])->name('food.index');
 Route::get('food/{food}', [\App\Http\Controllers\FoodController::class, 'show'])->name('food.show');
 
+Route::middleware(['auth'])->group(function () {
+    Route::post('reviews/{review}/like', [\App\Http\Controllers\ReviewReactionController::class, 'like'])->name('reviews.like');
+    Route::post('reviews/{review}/dislike', [\App\Http\Controllers\ReviewReactionController::class, 'dislike'])->name('reviews.dislike');
+    Route::delete('reviews/{review}/reaction', [\App\Http\Controllers\ReviewReactionController::class, 'remove'])->name('reviews.reaction.remove');
+});
+
 
 /*
  * User zone routes
